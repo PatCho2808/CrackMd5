@@ -3,13 +3,15 @@
 <h1> MD5 CRACKER by Patrycja Chojnacka </h1>
 
 <?php
-
+ 
 	if(isset($_GET["md5"]))
 	{
 		$md5 = $_GET["md5"];
 		//uncomment this to check proper behaviour
 		// pin 1234
 		//$md5 = '81dc9bdb52d04dc20036dbd8313ed055'; 
+
+		$timeBefore = microtime(true); 
 
 		$values = array(0,0,0,0);
 		$try = "";  
@@ -40,13 +42,17 @@
 
 		if($try == $md5)
 		{
-			echo "Cracked pin: $valAsString";
+			echo nl2br("Cracked pin: $valAsString\n");
 		}
 		else
 		{
-			echo "Pin not found"; 
+			echo "Pin not found\n"; 
 		}
 	}
+
+	$timeAfter = microtime(true); 
+	$elapsedTime = $timeAfter - $timeBefore; 
+	echo "Elapsed time: $elapsedTime"; 
 
 ?>
 
